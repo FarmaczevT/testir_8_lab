@@ -24,7 +24,7 @@ jobs:
         run: pip install -r requirements.txt
         # Добавляем сборку
       - name: Build project
-        run: python setup.py build
+        run: python lab1.py build
         # Запускаем тесты
       - name: Run tests
         run: python -m unittest discover -p 'test_*.py'
