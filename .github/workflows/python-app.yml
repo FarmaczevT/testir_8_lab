@@ -19,7 +19,9 @@ jobs:
         python-version: 3.x
 
     - name: Install dependencies
-      run: pip install -r requirements.txt
+      run: |
+        pip install -r requirements.txt
+        pip install coverage
 
     - name: Run tests
       run: python -m unittest discover -p 'test_lab2.py'
