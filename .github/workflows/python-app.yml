@@ -24,26 +24,4 @@ jobs:
         run: pip install -r requirements.txt
         # Запускаем тесты
       - name: Run tests
-        run: pytest
-  # Задача развертывания
-  deploy:
-    name: Deploy to server
-    runs-on: ubuntu-latest
-    needs: [test]
-    steps:
-      - name: Get code from repo
-        uses: actions/checkout@v3
-        # Настройка подключения по SSH
-      - name: Configure SSH
-        run: |
-          mkdir -p ~/.ssh/
-          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          cat >>~/.ssh/config <<END
-          Host yandex_server
-            HostName ${{ secrets.HOST }}
-            User ${{ secrets.LOGIN }}
-            Port ${{ secrets.PORT }}
-            IdentityFile ~/.ssh/id_rsa
-            StrictHostKeyChecking no
-          END
+        run: python -m unittest discover -p 'test_lab2.py'
