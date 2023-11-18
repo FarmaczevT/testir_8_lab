@@ -22,6 +22,9 @@ jobs:
         # Устанавливаем зависемости
       - name: Install dependencies
         run: pip install -r requirements.txt
+        # Добавляем сборку
+      - name: Build project
+        run: python lab1.py build
         # Запускаем тесты
       - name: Run tests
-        run: python -m unittest discover -p 'test_lab2.py'
+        run: python -m unittest discover -p 'test_*.py'
