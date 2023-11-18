@@ -1,30 +1,27 @@
-name: Python App
-
 on:
   push:
-    branches:
-      - master
-
+     branches: [master]
+# Перечисление списка задач в данном workflow
 jobs:
-  build:
+  # Задача тестирования
+  test:
+    # Название задачи
+    name: Test code
+    # Тип ВМ, на которой будет запущена задача
     runs-on: ubuntu-latest
-
+    # Шаги выполняемые в рамках задачи
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.x
-
-    - name: Install dependencies
-      run: pip install -r requirements.txt
-
-    - name: Run tests
-      run: python -m unittest discover -p 'test_lab2.py'
-
-    - name: Publish coverage report
-      run: |
-        coverage xml -o coverage.xml
-        bash <(curl -s https://codecov.io/bash) -f coverage.xml
+        # Получаем код репозитория
+      - name: Get code from repo
+        uses: actions/checkout@v3
+        # Устанавливаем python3.10
+      - name: Set-up python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+        # Устанавливаем зависемости
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+        # Запускаем тесты
+      - name: Run tests
+        run: python -m unittest discover -p 'test_lab2.py'
