@@ -1,6 +1,6 @@
 class Labs1:
     @staticmethod
-    def bubble_sort(arr):
+    def bubble_sort(arr)
         # Проверка на целые числа
         for item in arr:
             if not isinstance(item, int):
